@@ -1,8 +1,9 @@
 package generators
 
 import (
+	"fmt"
 	"os"
-	"strings"
+	"path"
 )
 
 /*
@@ -28,18 +29,21 @@ import (
 	routers/router.go
 */
 
+
 // DefaultGenerator 默认生成器
-func DefaultGenerator(path string, projectPath string) {
+func DefaultGenerator(opt *Option) (err error) {
+	// prePath 指定路径生成项目
+	fmt.Println(opt)
 	var dirs []string
 	dirs = []string{"handlers", "routers", "models", "templates",
 		"utils", "config", "log", "middleware"}
 	for _, dir := range dirs {
-		fullDir := strings.Trim(path, string(os.PathSeparator)) + string(os.PathSeparator) +
-			projectPath + string(os.PathSeparator) + dir
-		err := os.MkdirAll(fullDir, 0755)
+		fullDir := path.Join(opt.AbsProjectPath, dir)
+		err = os.MkdirAll(fullDir, 0755)
 		if err != nil {
 			panic(err)
-			return
+			return err
 		}
 	}
+	return nil
 }
