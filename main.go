@@ -29,12 +29,16 @@ func entry(c *cli.Context) (err error) {
 		return ErrIsNotDir
 	}
 	opt.AbsProjectPath = path.Join(c.String("path"), c.String("project-name"))
-
+	// 生成目录
 	err = generators.DefaultGenerator(&opt)
+
 	if err != nil {
 		fmt.Printf("create dirs err: %v", err)
 	}
-
+	err = generators.DefaultFileGenerator(&opt)
+	if err != nil {
+		fmt.Printf("create dirs err: %v", err)
+	}
 	return nil
 }
 
