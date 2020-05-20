@@ -27,6 +27,7 @@ import (
 	config/configstruct.go
 	middleware/log.go
 	routers/router.go
+	model/model.go
 */
 
 
@@ -34,8 +35,8 @@ import (
 func DefaultGenerator(opt *Option) (err error) {
 	// prePath 指定路径生成项目
 	var dirs []string
-	dirs = []string{"handlers", "routers", "models", "templates",
-		"utils", "config", "log", "middleware"}
+	dirs = []string{"handlers", "routers", "model", "templates",
+		"utils/logging", "config", "log", "middleware"}
 	for _, dir := range dirs {
 		fullDir := path.Join(opt.AbsProjectPath, dir)
 		err = os.MkdirAll(fullDir, 0755)
@@ -61,17 +62,22 @@ func writeFile(filePath, content string)(){
 func DefaultFileGenerator(opt *Option)(err error){
 	// 入口函数
 	mainFile := path.Join(opt.AbsProjectPath, "main.go")
-	writeFile(mainFile, MainContent)
+	mainContent := fmt.Sprintf(MainContent, opt.ProjectName, opt.ProjectName)
+	writeFile(mainFile, mainContent)
 
 	// 写路由
 	routerFile := path.Join(opt.AbsProjectPath, "routers/router.go")
-	routerContent := fmt.Sprintf(RouterContent, opt.ProjectName, opt.ProjectName)
+	routerContent := fmt.Sprintf(RouterContent, opt.ProjectName)
 	writeFile(routerFile, routerContent)
 
 	// 日志中间件
 	middlewareLogFile  := path.Join(opt.AbsProjectPath, "middleware/log.go")
 	middlewareLogContent := fmt.Sprintf(MiddlewareLogContent,opt.ProjectName, opt.ProjectName)
 	writeFile(middlewareLogFile, middlewareLogContent)
+
+	utilsLogFile := path.Join(opt.AbsProjectPath, "utils/logging/log.go")
+	utilsLogContent := fmt.Sprintf(UtilsLogContent, opt.ProjectName)
+	writeFile(utilsLogFile, utilsLogContent)
 
 	// 配置相关
 	configFile := path.Join(opt.AbsProjectPath, "config/config.go")
@@ -83,6 +89,15 @@ func DefaultFileGenerator(opt *Option)(err error){
 	configStructFile := path.Join(opt.AbsProjectPath, "config/configstruct.go")
 	writeFile(configStructFile, ConfigStructContent)
 
+	modelFile := path.Join(opt.AbsProjectPath, "model/model.go")
+	modelContent := fmt.Sprintf(ModelContent, opt.ProjectName)
+	writeFile(modelFile, modelContent)
+	return nil
+}
 
+func DefaultModGenerator(opt *Option)(err error){
+	goModFile := path.Join(opt.AbsProjectPath, "go.mod")
+	goModContent := fmt.Sprintf(GoModContent, opt.ProjectName)
+	writeFile(goModFile, goModContent)
 	return nil
 }

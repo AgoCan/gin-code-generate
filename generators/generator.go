@@ -9,4 +9,10 @@ type Option struct {
 	ProjectName string
 	// proto 路径
 	ProtoFilePath string
+	//
+	IsMod bool
+}
+
+type Generator interface {
+	Run(opt *Option)error
 }

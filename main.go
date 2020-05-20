@@ -11,8 +11,10 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var ErrIsNotDir = errors.New("the path is not director")
-var opt generators.Option
+var (
+	ErrIsNotDir = errors.New("the path is not director")
+	opt generators.Option
+)
 
 // 入口函数
 func entry(c *cli.Context) (err error) {
@@ -35,9 +37,16 @@ func entry(c *cli.Context) (err error) {
 	if err != nil {
 		fmt.Printf("create dirs err: %v", err)
 	}
+	// 生成文件
 	err = generators.DefaultFileGenerator(&opt)
 	if err != nil {
 		fmt.Printf("create dirs err: %v", err)
+	}
+	if c.Bool("mod"){
+		err = generators.DefaultModGenerator(&opt)
+		if err != nil {
+			fmt.Printf("create dirs err: %v", err)
+		}
 	}
 	return nil
 }
@@ -57,6 +66,12 @@ func main() {
 				Value:   "demo",
 				Usage:   "项目名称",
 				Destination: &opt.ProjectName,
+			},
+			&cli.BoolFlag{
+				Name:    "mod",
+				Value:   true,
+				Usage:   "生成mod",
+				Destination: &opt.IsMod,
 			},
 
 		},
