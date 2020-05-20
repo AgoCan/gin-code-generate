@@ -30,7 +30,6 @@ import (
 	model/model.go
 */
 
-
 // DefaultGenerator 默认生成器
 func DefaultGenerator(opt *Option) (err error) {
 	// prePath 指定路径生成项目
@@ -42,14 +41,14 @@ func DefaultGenerator(opt *Option) (err error) {
 		err = os.MkdirAll(fullDir, 0755)
 		if err != nil {
 			panic(err)
-			return err
+
 		}
 	}
 	return nil
 }
 
 // writeFile 写入文件，因为比较小。直接一次性写入
-func writeFile(filePath, content string)(){
+func writeFile(filePath, content string) {
 	err := ioutil.WriteFile(filePath, []byte(content), 0644)
 	if err != nil {
 		// 如果错误。直接抛错
@@ -59,7 +58,7 @@ func writeFile(filePath, content string)(){
 }
 
 // DefaultFileGenerator 创建文件
-func DefaultFileGenerator(opt *Option)(err error){
+func DefaultFileGenerator(opt *Option) (err error) {
 	// 入口函数
 	mainFile := path.Join(opt.AbsProjectPath, "main.go")
 	mainContent := fmt.Sprintf(MainContent, opt.ProjectName, opt.ProjectName)
@@ -71,8 +70,8 @@ func DefaultFileGenerator(opt *Option)(err error){
 	writeFile(routerFile, routerContent)
 
 	// 日志中间件
-	middlewareLogFile  := path.Join(opt.AbsProjectPath, "middleware/log.go")
-	middlewareLogContent := fmt.Sprintf(MiddlewareLogContent,opt.ProjectName, opt.ProjectName)
+	middlewareLogFile := path.Join(opt.AbsProjectPath, "middleware/log.go")
+	middlewareLogContent := fmt.Sprintf(MiddlewareLogContent, opt.ProjectName, opt.ProjectName)
 	writeFile(middlewareLogFile, middlewareLogContent)
 
 	utilsLogFile := path.Join(opt.AbsProjectPath, "utils/logging/log.go")
@@ -95,7 +94,8 @@ func DefaultFileGenerator(opt *Option)(err error){
 	return nil
 }
 
-func DefaultModGenerator(opt *Option)(err error){
+// DefaultModGenerator mod生成器
+func DefaultModGenerator(opt *Option) (err error) {
 	goModFile := path.Join(opt.AbsProjectPath, "go.mod")
 	goModContent := fmt.Sprintf(GoModContent, opt.ProjectName)
 	writeFile(goModFile, goModContent)

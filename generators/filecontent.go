@@ -130,7 +130,6 @@ func TestConfig(t *testing.T){
 }
 `
 
-
 	ConfigStructContent = `
 package config
 
@@ -190,7 +189,6 @@ func (c *Config) getConfig() *Config {
 	}
 	return c
 }`
-
 
 	// MiddlewareLogContent 导入包的时候 %s 拼接项目名称
 	MiddlewareLogContent = `package middleware
@@ -450,4 +448,3 @@ require (
 
 `
 )
-

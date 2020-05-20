@@ -12,8 +12,9 @@ import (
 )
 
 var (
+	// ErrIsNotDir 错误
 	ErrIsNotDir = errors.New("the path is not director")
-	opt generators.Option
+	opt         generators.Option
 )
 
 // 入口函数
@@ -26,8 +27,8 @@ func entry(c *cli.Context) (err error) {
 		fmt.Printf("'path' %v is no such file or director.", s)
 		return err
 	}
-	if !s.IsDir(){
-		panic("the path is not director")
+	if !s.IsDir() {
+		fmt.Printf("'path' %v is not director.", s)
 		return ErrIsNotDir
 	}
 	opt.AbsProjectPath = path.Join(c.String("path"), c.String("project-name"))
@@ -42,7 +43,7 @@ func entry(c *cli.Context) (err error) {
 	if err != nil {
 		fmt.Printf("create dirs err: %v", err)
 	}
-	if c.Bool("mod"){
+	if c.Bool("mod") {
 		err = generators.DefaultModGenerator(&opt)
 		if err != nil {
 			fmt.Printf("create dirs err: %v", err)
@@ -56,24 +57,23 @@ func main() {
 	app := &cli.App{
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:    "path",
-				Value:   ".",
-				Usage:   "生成项目的路径",
+				Name:        "path",
+				Value:       ".",
+				Usage:       "生成项目的路径",
 				Destination: &opt.ProjectPath,
 			},
 			&cli.StringFlag{
-				Name:    "project-name",
-				Value:   "demo",
-				Usage:   "项目名称",
+				Name:        "project-name",
+				Value:       "demo",
+				Usage:       "项目名称",
 				Destination: &opt.ProjectName,
 			},
 			&cli.BoolFlag{
-				Name:    "mod",
-				Value:   true,
-				Usage:   "生成mod",
+				Name:        "mod",
+				Value:       true,
+				Usage:       "生成mod",
 				Destination: &opt.IsMod,
 			},
-
 		},
 
 		Action: entry,

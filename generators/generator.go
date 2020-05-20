@@ -1,5 +1,6 @@
 package generators
 
+// Option 参数保存
 type Option struct {
 	// AbsProjectPath 项目路径+项目名称
 	AbsProjectPath string
@@ -13,6 +14,7 @@ type Option struct {
 	IsMod bool
 }
 
+// Generator 生成器接口
 type Generator interface {
-	Run(opt *Option)error
+	Run(opt *Option) error
 }
