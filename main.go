@@ -32,22 +32,21 @@ func entry(c *cli.Context) (err error) {
 		return ErrIsNotDir
 	}
 	opt.AbsProjectPath = path.Join(c.String("path"), c.String("project-name"))
-	// 生成目录
-	err = generators.DefaultGenerator(&opt)
-
+	// 生成目录 需要在一开始就直接运行
+	var dirGen generators.DirGenerator
+	err = dirGen.Run(&opt)
 	if err != nil {
 		fmt.Printf("create dirs err: %v", err)
 	}
-	// 生成文件
-	err = generators.DefaultFileGenerator(&opt)
-	if err != nil {
-		fmt.Printf("create dirs err: %v", err)
-	}
+	// 注册
+	generators.Register("files",generators.FileGen)
 	if c.Bool("mod") {
-		err = generators.DefaultModGenerator(&opt)
-		if err != nil {
-			fmt.Printf("create dirs err: %v", err)
-		}
+		generators.Register("mod",generators.ModGen)
+	}
+	generators.RunGenerator(&opt)
+
+	if c.Bool("mod") {
+
 	}
 	return nil
 }
