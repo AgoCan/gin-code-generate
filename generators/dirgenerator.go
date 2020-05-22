@@ -1,4 +1,5 @@
 package generators
+
 // 创建目录需要单独运行，不放在GeneratorMgr里面
 import (
 	"os"
@@ -18,10 +19,10 @@ var dirs = []string{
 
 // DirGenerator 目录生成器
 type DirGenerator struct {
-
 }
 
-func (d *DirGenerator)Run(opt *Option)(err error){
+// Run 运行生成器
+func (d *DirGenerator) Run(opt *Option) (err error) {
 	for _, dir := range dirs {
 		fullDir := path.Join(opt.AbsProjectPath, dir)
 		err = os.MkdirAll(fullDir, 0755)

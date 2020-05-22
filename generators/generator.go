@@ -19,6 +19,8 @@ type Option struct {
 	//
 	IsMod bool
 }
+
+// GeneratorMgr 生成器管理
 type GeneratorMgr struct {
 	genMap map[string]Generator
 }
@@ -27,12 +29,13 @@ var genMgr *GeneratorMgr
 
 // Generator 生成器接口
 type Generator interface {
+	// Run 生成器run
 	Run(opt *Option) error
 }
 
 // Register 把生成器都注册到map中，然后轮询执行
-func Register(name string, gen Generator)(err error){
-	_,ok := genMgr.genMap[name]
+func Register(name string, gen Generator) (err error) {
+	_, ok := genMgr.genMap[name]
 	if ok {
 		err = fmt.Errorf("genrator %v exits", name)
 	}
@@ -41,7 +44,7 @@ func Register(name string, gen Generator)(err error){
 }
 
 // writeFile 使用模版文件直接写入文件
-func writeFile(tmplFilePath, filePath string, opt *Option)(err error) {
+func writeFile(tmplFilePath, filePath string, opt *Option) (err error) {
 
 	file, err := os.OpenFile(filePath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
 	defer file.Close()
@@ -64,14 +67,15 @@ func writeFile(tmplFilePath, filePath string, opt *Option)(err error) {
 }
 
 // init 初始化
-func init(){
+func init() {
 	genMgr = &GeneratorMgr{
 		genMap: make(map[string]Generator),
 	}
 }
 
-func RunGenerator(opt *Option)(err error){
-	for _, gen := range genMgr.genMap{
+// RunGenerator 运行所有已经注册的生成器
+func RunGenerator(opt *Option) (err error) {
+	for _, gen := range genMgr.genMap {
 		err = gen.Run(opt)
 		return err
 	}

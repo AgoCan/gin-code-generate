@@ -3,6 +3,12 @@
 
 https://github.com/urfave/cli 命令行工具
 
+## 运行方式
+
+```bash
+./
+```
+
 ## 代码目录结构
 
 ```bash
@@ -22,7 +28,7 @@ https://github.com/urfave/cli 命令行工具
 │   └── deployment.md   # 部署文档
 ├── go.mod              # 使用go mod
 ├── go.sum
-├── handler             # 控制层
+├── handlers             # 控制层
 │   └── example
 │       └── example.go
 ├── main.go             # 入口函数
@@ -43,5 +49,4 @@ https://github.com/urfave/cli 命令行工具
     │   └── log_test.go
     └── response        # 固定返回格式
         └── response.go
-
 ```
