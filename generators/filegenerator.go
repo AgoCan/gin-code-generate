@@ -2,20 +2,21 @@ package generators
 
 import (
 	"path"
+	tmpl "github.com/agocan/gin-code-generate/generators/gen-tmpl"
 )
 
-var files = []string{
-	"main.go",
-	"routers/router.go",
-	"middleware/log.go",
-	"utils/logging/log.go",
-	"config/config.go",
-	"config/config.yaml",
-	"config/config_test.go",
-	"config/configstruct.go",
-	"model/model.go",
-	"Dockerfile",
-	"README.md",
+var files = map[string]string{
+	"main.go": tmpl.MainContent,
+	"routers/router.go": tmpl.RouterContent,
+	"middleware/log.go":tmpl.MiddlewareLog,
+	"utils/logging/log.go": tmpl.UtilsLoggingContent,
+	"config/config.go": tmpl.ConfigContent,
+	"config/config.yaml": tmpl.ConfigYamlContent,
+	"config/config_test.go": tmpl.ConfigTestContent,
+	"config/configstruct.go": tmpl.ConfigStructContent,
+	"model/model.go": tmpl.ModelContent,
+	"Dockerfile": tmpl.DockerfileContent,
+	"README.md": tmpl.ReadmeContent,
 }
 
 // FileGenerator 文件生成器
@@ -27,11 +28,10 @@ var FileGen *FileGenerator
 
 // Run 运行生成器
 func (f *FileGenerator) Run(opt *Option) error {
-	for _, fileName := range files {
+	for fileName, tmplContent := range files {
 		filePath := path.Join(opt.AbsProjectPath, fileName)
-		tmplFilePath := path.Join("./templates/", fileName+".tmpl")
 
-		err := writeFile(tmplFilePath, filePath, opt)
+		err := writeFile(tmplContent, filePath, opt)
 		if err != nil {
 			return err
 		}

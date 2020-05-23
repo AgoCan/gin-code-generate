@@ -2,4 +2,5 @@
 demo
 log
 log/*
-gin-code-generate
+gin-code-generate-os
+gin-code-generate.exe

@@ -44,7 +44,7 @@ func Register(name string, gen Generator) (err error) {
 }
 
 // writeFile 使用模版文件直接写入文件
-func writeFile(tmplFilePath, filePath string, opt *Option) (err error) {
+func writeFile(tmplContent, filePath string, opt *Option) (err error) {
 
 	file, err := os.OpenFile(filePath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
 	defer file.Close()
@@ -53,7 +53,8 @@ func writeFile(tmplFilePath, filePath string, opt *Option) (err error) {
 		return err
 	}
 
-	t, err := template.ParseFiles(tmplFilePath)
+	// t, err := template.ParseFiles(tmplFilePath)
+	t, err := template.New(filePath).Parse(tmplContent)
 	if err != nil {
 		fmt.Printf("err: %v\n", err)
 		return err
