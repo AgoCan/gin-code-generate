@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// ConfigYamlContent 配置文件yaml
 var ConfigYamlContent = `# 使用yaml做配置项
 # 数据库配置项
 db:

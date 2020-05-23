@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// UtilsLoggingContent 日志工具
 var UtilsLoggingContent = `package logging
 import (
 	"{{ .ProjectName }}/config"

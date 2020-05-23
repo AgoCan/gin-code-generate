@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// MainContent main
 var MainContent = `package main
 
 import (

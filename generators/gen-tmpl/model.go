@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// ModelContent model
 var ModelContent = `package model
 // https://gorm.io/zh_CN/
 import (

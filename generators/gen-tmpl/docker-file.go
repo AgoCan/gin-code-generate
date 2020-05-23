@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// DockerfileContent dockerfile配置文件
 var DockerfileContent = `# stage 1: build src code to binary
 # 获取对应版本号 https://hub.docker.com/_/golang
 FROM golang:1.14-alpine3.11 as builder

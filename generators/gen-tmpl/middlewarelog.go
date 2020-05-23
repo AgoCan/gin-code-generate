@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// MiddlewareLog 日志中间件
 var MiddlewareLog = `package middleware
 /*
 # 日志文件默认存储位置

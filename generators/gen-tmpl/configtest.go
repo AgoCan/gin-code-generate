@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// ConfigTestContent 配置文件测试脚本
 var ConfigTestContent = `package config
 
 import (

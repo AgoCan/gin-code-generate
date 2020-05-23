@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// GoModContent gomod
 var GoModContent = `module {{ .ProjectName }}
 go 1.14
 require (

@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// RouterContent router
 var RouterContent = `package routers
 import (
 	"github.com/gin-gonic/gin"

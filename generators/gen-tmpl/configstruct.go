@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// ConfigStructContent 配置文件结构体解析
 var ConfigStructContent = `package config
 
 import (

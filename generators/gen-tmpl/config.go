@@ -1,5 +1,6 @@
-package gen_tmpl
+package tmpl
 
+// ConfigContent 配置文件
 var ConfigContent = `package config
 import (
 	"fmt"

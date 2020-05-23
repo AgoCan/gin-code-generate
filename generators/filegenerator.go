@@ -2,21 +2,22 @@ package generators
 
 import (
 	"path"
-	tmpl "github.com/agocan/gin-code-generate/generators/gen-tmpl"
+
+	tmpl "github.com/agocan/gin-code-generate/generators/tmpl"
 )
 
 var files = map[string]string{
-	"main.go": tmpl.MainContent,
-	"routers/router.go": tmpl.RouterContent,
-	"middleware/log.go":tmpl.MiddlewareLog,
-	"utils/logging/log.go": tmpl.UtilsLoggingContent,
-	"config/config.go": tmpl.ConfigContent,
-	"config/config.yaml": tmpl.ConfigYamlContent,
-	"config/config_test.go": tmpl.ConfigTestContent,
+	"main.go":                tmpl.MainContent,
+	"routers/router.go":      tmpl.RouterContent,
+	"middleware/log.go":      tmpl.MiddlewareLog,
+	"utils/logging/log.go":   tmpl.UtilsLoggingContent,
+	"config/config.go":       tmpl.ConfigContent,
+	"config/config.yaml":     tmpl.ConfigYamlContent,
+	"config/config_test.go":  tmpl.ConfigTestContent,
 	"config/configstruct.go": tmpl.ConfigStructContent,
-	"model/model.go": tmpl.ModelContent,
-	"Dockerfile": tmpl.DockerfileContent,
-	"README.md": tmpl.ReadmeContent,
+	"model/model.go":         tmpl.ModelContent,
+	"Dockerfile":             tmpl.DockerfileContent,
+	"README.md":              tmpl.ReadmeContent,
 }
 
 // FileGenerator 文件生成器
