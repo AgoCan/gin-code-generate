@@ -6,7 +6,7 @@ var MainContent = `package main
 import (
 	"fmt"
 
-	"{{ .ProjectName }}/model"
+	"{{ .ProjectName }}/models"
 	"{{ .ProjectName }}/routers"
 
 )

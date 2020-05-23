@@ -45,9 +45,6 @@ func entry(c *cli.Context) (err error) {
 	}
 	generators.RunGenerator(&opt)
 
-	if c.Bool("mod") {
-
-	}
 	return nil
 }
 

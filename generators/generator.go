@@ -45,7 +45,6 @@ func Register(name string, gen Generator) (err error) {
 
 // writeFile 使用模版文件直接写入文件
 func writeFile(tmplContent, filePath string, opt *Option) (err error) {
-
 	file, err := os.OpenFile(filePath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
 	defer file.Close()
 	if err != nil {
@@ -77,8 +76,12 @@ func init() {
 // RunGenerator 运行所有已经注册的生成器
 func RunGenerator(opt *Option) (err error) {
 	for _, gen := range genMgr.genMap {
+
 		err = gen.Run(opt)
-		return err
+		if err != nil {
+			fmt.Printf("err: %v", err)
+			return err
+		}
 	}
 	return nil
 }

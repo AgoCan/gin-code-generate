@@ -9,7 +9,7 @@ import (
 var dirs = []string{
 	"handlers",
 	"routers",
-	"model",
+	"models",
 	"templates",
 	"utils/logging",
 	"config",

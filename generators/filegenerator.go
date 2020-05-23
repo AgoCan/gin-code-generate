@@ -1,6 +1,7 @@
 package generators
 
 import (
+	"fmt"
 	"path"
 
 	tmpl "github.com/agocan/gin-code-generate/generators/gen-tmpl"
@@ -15,7 +16,7 @@ var files = map[string]string{
 	"config/config.yaml":     tmpl.ConfigYamlContent,
 	"config/config_test.go":  tmpl.ConfigTestContent,
 	"config/configstruct.go": tmpl.ConfigStructContent,
-	"model/model.go":         tmpl.ModelContent,
+	"models/model.go":         tmpl.ModelContent,
 	"Dockerfile":             tmpl.DockerfileContent,
 	"README.md":              tmpl.ReadmeContent,
 }
@@ -34,6 +35,7 @@ func (f *FileGenerator) Run(opt *Option) error {
 
 		err := writeFile(tmplContent, filePath, opt)
 		if err != nil {
+			fmt.Printf("create files err：%v", err)
 			return err
 		}
 	}
@@ -51,8 +53,8 @@ var ModGen *ModGenerator
 // Run 运行生成器
 func (m *ModGenerator) Run(opt *Option) error {
 	filePath := path.Join(opt.AbsProjectPath, "go.mod")
-	tmplFilePath := path.Join("./templates/", "go.mod.tmpl")
-	err := writeFile(tmplFilePath, filePath, opt)
+
+	err := writeFile(tmpl.GoModContent, filePath, opt)
 	if err != nil {
 		return err
 	}
