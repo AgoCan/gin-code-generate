@@ -50,4 +50,8 @@ https://github.com/urfave/cli 命令行工具
     └── response        # 固定返回格式
         └── response.go
 ```
+
+```
+# 生成linux-adm64的二进制命令
 docker run -it --rm -e GOPROXY=https://goproxy.io -v /Users/hanke/go/src/github.com/agocan/gin-code-generate:/app golang:1.14-alpine3.11 'cd /app; go build'
+```
