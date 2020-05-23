@@ -3,7 +3,7 @@ package generators
 import (
 	"path"
 
-	tmpl "github.com/agocan/gin-code-generate/generators/tmpl"
+	tmpl "github.com/agocan/gin-code-generate/generators/gen-tmpl"
 )
 
 var files = map[string]string{
