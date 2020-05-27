@@ -13,6 +13,10 @@ db:
 log:
   # 默认路径是运行程序的目录
   #  logDirector: ./logging
-  logAutoFile: log.middleware
-  logInfoFile: log.manual
+  logInfoFilename: info.log
+  logMaxSize: 10
+  logMaxBackups: 5
+  logMaxAge: 10
+  logLevel: info
+
 `

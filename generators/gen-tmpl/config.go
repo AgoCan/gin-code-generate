@@ -32,11 +32,11 @@ var (
 	// LogDirector 日志目录
 	LogDirector string
 	// LogInfoFile info日志文件
-	LogAutoFile string
-	// LogWaringFile waring 日志文件
-	//LogWaringFile string
-	//// LogErrorFile  error 日志文件
-	LogInfoFile string
+	LogInfoFilename string
+	LogMaxSize int
+	LogMaxBackups int
+	LogMaxAge int
+	LogLevel string
 )
 
 // 获取文件绝对路径
@@ -70,10 +70,11 @@ func InitConfig(opt *Option) {
 	if LogDirector == ""{
 		LogDirector = path.Join(path.Dir(getCurrPath()), "log")
 	}
-	LogAutoFile = path.Join(LogDirector, viper.GetString("Log.LogAutoFile"))
-	//LogWaringFile := path.Join(LogDirector, Conf.logging.logWaringFile)
-	LogInfoFile = path.Join(LogDirector, viper.GetString("Log.LogInfoFile"))
-
+	LogInfoFilename = path.Join(LogDirector, viper.GetString("log.logInfoFilename"))
+	LogMaxSize = viper.GetInt("log.logMaxSize")
+	LogMaxBackups = viper.GetInt("log.LogMaxBackups")
+	LogMaxAge = viper.GetInt("log.LogMaxAge")
+	LogLevel = viper.GetString("logLevel")
 }
 
 `

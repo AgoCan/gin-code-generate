@@ -8,7 +8,12 @@ import (
 )
 // SetupRouter 路由路口
 func SetupRouter() *gin.Engine{
-	router := gin.Default()
-	router.Use(middleware.LogMiddleware())
+	router := gin.New()
+	if err := middleware.InitLogger(); err != nil {
+		panic(err)
+	}
+	router.Use(middleware.GinLogger(middleware.Logger),
+		middleware.GinRecovery(middleware.Logger, true))
 	return router
-}`
+}
+`
