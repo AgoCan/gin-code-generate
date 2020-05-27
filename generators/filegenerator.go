@@ -14,8 +14,6 @@ var files = map[string]string{
 	"utils/logging/log.go":   tmpl.UtilsLoggingContent,
 	"config/config.go":       tmpl.ConfigContent,
 	"config/config.yaml":     tmpl.ConfigYamlContent,
-	"config/config_test.go":  tmpl.ConfigTestContent,
-	"config/configstruct.go": tmpl.ConfigStructContent,
 	"models/model.go":         tmpl.ModelContent,
 	"Dockerfile":             tmpl.DockerfileContent,
 	"README.md":              tmpl.ReadmeContent,

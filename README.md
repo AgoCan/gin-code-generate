@@ -1,7 +1,7 @@
 # gin-code-generate
 基于gin和gorm的mvc框架目录结构构建
 
-https://github.com/urfave/cli 命令行工具
+https://github.com/urfave/cli 命令行工具 可选项 https://github.com/spf13/cobra
 
 ## 运行方式
 

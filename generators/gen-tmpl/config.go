@@ -9,6 +9,10 @@ package config
 
 import (
 	"path"
+	"runtime"
+	"fmt"
+
+	"github.com/spf13/viper"
 )
 
 // 设置配置文件的 环境变量
@@ -35,25 +39,40 @@ var (
 	LogInfoFile string
 )
 
-
+// 获取文件绝对路径
+func getCurrPath() string {
+	var abPath string
+	_, filename, _, ok := runtime.Caller(1)
+	if ok {
+		abPath = path.Dir(filename)
+	}
+	return abPath
+}
 
 func init() {
-	Conf.getConfig()
-	MysqlDbName = Conf.Db.Mysql.DbName
-	MysqlPassword = Conf.Db.Mysql.Password
-	MysqlUsername = Conf.Db.Mysql.Username
-	MysqlPort = Conf.Db.Mysql.Port
-	MysqlHost = Conf.Db.Mysql.Host
+	viper.SetConfigFile("./config.yaml")
+	err := viper.ReadInConfig()
+	if err != nil {
+		fmt.Println("err:", err)
+		return
+	}
+	MysqlDbName = viper.GetString("db.mysql.dbname")
+	MysqlPassword = viper.GetString("Db.Mysql.Password")
+	MysqlUsername = viper.GetString("Db.Mysql.Username")
+	MysqlPort = viper.GetString("Db.Mysql.Port")
+	MysqlHost = viper.GetString("Db.Mysql.Host")
+
 	// "user:password@(localhost)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 	MysqlConnect = MysqlUsername + ":" + MysqlPassword + "@(" + MysqlHost + ":" + MysqlPort + ")/" + MysqlDbName +
 		"?charset=utf8mb4&parseTime=True&loc=Local"
-	LogDirector = Conf.Log.LogDirector
+
+	LogDirector = viper.GetString("Log.LogDirector")
 	if LogDirector == ""{
 		LogDirector = path.Join(path.Dir(getCurrPath()), "log")
 	}
-	LogAutoFile = path.Join(LogDirector, Conf.Log.LogAutoFile)
+	LogAutoFile = path.Join(LogDirector, viper.GetString("Log.LogAutoFile"))
 	//LogWaringFile := path.Join(LogDirector, Conf.logging.logWaringFile)
-	LogInfoFile = path.Join(LogDirector, Conf.Log.LogInfoFile)
+	LogInfoFile = path.Join(LogDirector, viper.GetString("Log.LogInfoFile"))
 
 }
 

@@ -7,7 +7,7 @@ FROM golang:1.14-alpine3.11 as builder
 ENV GOPROXY="https://goproxy.io"
 COPY . /app/
 # 下载指定的包，go.mod已经记录，可以直接使用
-RUN cd /app && go build -o go-start .
+RUN cd /app && go build -o app .
 
 # stage 2: use alpine as base image
 FROM alpine:3.10
@@ -19,6 +19,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     apk del tzdata && \
     rm -rf /var/cache/apk/*
 # 使用--from的参数做到拷贝使用
-COPY --from=builder /app/go-start /go-start
+COPY --from=builder /app/app /app
 
-CMD ["/go-start"]`
+CMD ["/app"]`
