@@ -17,6 +17,7 @@ var files = map[string]string{
 	"models/model.go":         tmpl.ModelContent,
 	"Dockerfile":             tmpl.DockerfileContent,
 	"README.md":              tmpl.ReadmeContent,
+	"config/option.go":       tmpl.ConfigOptionContent,
 }
 
 // FileGenerator 文件生成器

@@ -23,4 +23,5 @@ require (
 	golang.org/x/tools v0.0.0-20200312045724-11d5b4c81c7d // indirect
 	google.golang.org/grpc v1.28.0 // indirect
 	github.com/spf13/viper v1.7.0
+	github.com/urfave/cli/v2 v2.2.0
 )`

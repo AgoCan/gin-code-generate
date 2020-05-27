@@ -49,8 +49,8 @@ func getCurrPath() string {
 	return abPath
 }
 
-func init() {
-	viper.SetConfigFile("./config.yaml")
+func InitConfig(opt *Option) {
+	viper.SetConfigFile(opt.ConfigFile)
 	err := viper.ReadInConfig()
 	if err != nil {
 		fmt.Println("err:", err)
