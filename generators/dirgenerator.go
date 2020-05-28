@@ -11,7 +11,7 @@ var dirs = []string{
 	"routers",
 	"models",
 	"templates",
-	"utils/logging",
+	"utils/response",
 	"config",
 	"log",
 	"middleware",

@@ -1,9 +1,10 @@
 # gin-code-generate
 基于gin制作的mvc代码目录生成器
-- gin
-- gorm
-- zap日志库
-- viper配置工具
+- gin       web框架
+- gorm      orm工具
+- zap       日志工具
+- viper     配置工具
+- urfave    命令行工具
 
 使用方式
 
@@ -11,13 +12,7 @@
 ./gin-code-generate --path 目录 --project-name 项目名称 --mod
 ```
 
-https://github.com/urfave/cli 命令行工具 可选项 https://github.com/spf13/cobra
 
-## 运行方式
-
-```bash
-./
-```
 
 ## 代码目录结构
 
@@ -25,41 +20,32 @@ https://github.com/urfave/cli 命令行工具 可选项 https://github.com/spf13
 .
 ├── Dockerfile          # 构建镜像，直接跑代码
 ├── README.md           # 阐述项目
-├── client              # 目录
-│   └── client.go       # 
-├── config              # 目录，配置文件使用yaml
-│   ├── config.go       # 解析配置文件 
-│   ├── config.yaml     # yaml的配置文件
-│   ├── config_test.go  # 测试代码
-│   └── configstruct.go # 把yaml配置文件解析成config.go使用
-├── docs                # 目录，文档
-│   ├── README.md       # 文档入口
-│   ├── apis.md         # 接口文档
-│   └── deployment.md   # 部署文档
-├── go.mod              # 使用go mod
-├── go.sum
-├── handlers             # 控制层
-│   └── example
-│       └── example.go
+├── config              # 配置文件目录
+│   ├── config.go       # 配置文件
+│   ├── config.yaml     # 配置文件yaml文件，可以使用ini
+│   └── option.go       # 运行时的参数
+├── go.mod              # go mod 文件
+├── handlers            # 控制层目录
+├── log                 # 日志打印目录，可以在配置文件配置
 ├── main.go             # 入口函数
-├── log                 # 日志打印默认位置
 ├── middleware          # 中间件
-│   ├── log.go
-├── model               # 模型层
-│   ├── model.go
+│   └── log.go          # 日志中间件，使用zap工具
+├── models              # 模型层目录
+│   └── model.go        # 模型层初始化文件
 ├── proto               # protobuf dil
-├── routers             # 路由层
-│   └── router.go
-├── templates           # 渲染
-│   └── base.tmpl
-└── utils               # 工具类
-    ├── base.go         # 基础工具类
-    ├── logging         # 手动打印的日志
-    │   ├── log.go
-    │   └── log_test.go
-    └── response        # 固定返回格式
-        └── response.go
+├── routers             # 路由层目录
+│   └── router.go       # 路由初始化文件
+├── templates           # 模版层
+└── utils               # 工具
+    └── response        # 回调使用
+
 ```
+
+
+## 补充
+### 工具
+
+命令行工具  https://github.com/urfave/cli 可选项 https://github.com/spf13/cobra
 
 ```
 # 生成linux-adm64的二进制命令
