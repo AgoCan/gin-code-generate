@@ -15,6 +15,37 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Conf 单例
+var Conf *Config
+
+// Config 配置文件
+type Config struct {
+	Db  DbConfig
+	Log LogConfig
+}
+
+// DbConfig 数据库配置文件
+type DbConfig struct {
+	Mysql struct {
+		DbName   string
+		Password string
+		Username string
+		Port     string
+		Host     string
+	}
+}
+
+// LogConfig 日志配置文件
+type LogConfig struct {
+	LogDirector     string
+	LogInfoFilename string
+	LogInfoFilePath string
+	LogMaxSize      int
+	LogMaxBackups   int
+	LogMaxAge       int
+	LogLevel        string
+}
+
 // 设置配置文件的 环境变量
 var (
 	//MysqlDbName 数据库名称
@@ -50,32 +81,29 @@ func getCurrPath() string {
 }
 
 // InitConfig 初始化配置项
-func InitConfig(opt *Option) {
+func InitConfig(opt *Option) (err error) {
 	viper.SetConfigFile(opt.ConfigFile)
-	err := viper.ReadInConfig()
+	err = viper.ReadInConfig()
 	if err != nil {
 		fmt.Println("err:", err)
-		return
+		return err
 	}
-	MysqlDbName = viper.GetString("db.mysql.dbname")
-	MysqlPassword = viper.GetString("Db.Mysql.Password")
-	MysqlUsername = viper.GetString("Db.Mysql.Username")
-	MysqlPort = viper.GetString("Db.Mysql.Port")
-	MysqlHost = viper.GetString("Db.Mysql.Host")
 
-	// "user:password@(localhost)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
-	MysqlConnect = MysqlUsername + ":" + MysqlPassword + "@(" + MysqlHost + ":" + MysqlPort + ")/" + MysqlDbName +
+	err = viper.Unmarshal(&Conf)
+	if err != nil {
+		fmt.Println("err:", err)
+		return err
+	}
+	MysqlConnect = Conf.Db.Mysql.Username + ":" + Conf.Db.Mysql.Password + "@(" +
+		Conf.Db.Mysql.Host + ":" + Conf.Db.Mysql.Port + ")/" + Conf.Db.Mysql.DbName +
 		"?charset=utf8mb4&parseTime=True&loc=Local"
-
-	LogDirector = viper.GetString("Log.LogDirector")
-	if LogDirector == ""{
+	LogDirector = Conf.Log.LogDirector
+	if LogDirector == "" {
 		LogDirector = path.Join(path.Dir(getCurrPath()), "log")
 	}
-	LogInfoFilename = path.Join(LogDirector, viper.GetString("log.logInfoFilename"))
-	LogMaxSize = viper.GetInt("log.logMaxSize")
-	LogMaxBackups = viper.GetInt("log.LogMaxBackups")
-	LogMaxAge = viper.GetInt("log.LogMaxAge")
-	LogLevel = viper.GetString("logLevel")
+	Conf.Log.LogInfoFilePath = path.Join(LogDirector, viper.GetString("log.logInfoFilename"))
+
+	return nil
 }
 
 `

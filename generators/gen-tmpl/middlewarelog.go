@@ -23,10 +23,10 @@ var Logger *zap.Logger
 
 // InitLogger 初始化Logger
 func InitLogger() (err error) {
-	writeSyncer := getLogWriter(config.LogInfoFilename,
-		config.LogMaxSize,
-		config.LogMaxBackups,
-		config.LogMaxAge)
+	writeSyncer := getLogWriter(config.Conf.Log.LogInfoFilePath,
+		config.Conf.Log.LogMaxSize,
+		config.Conf.Log.LogMaxBackups,
+		config.Conf.Log.LogMaxAge)
 	encoder := getEncoder()
 	var l = new(zapcore.Level)
 	err = l.UnmarshalText([]byte(config.LogLevel))
