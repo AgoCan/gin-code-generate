@@ -39,9 +39,9 @@ func entry(c *cli.Context) (err error) {
 		fmt.Printf("create dirs err: %v", err)
 	}
 	// 注册
-	generators.Register("files",generators.FileGen)
+	generators.Register("files", generators.FileGen)
 	if c.Bool("mod") {
-		generators.Register("mod",generators.ModGen)
+		generators.Register("mod", generators.ModGen)
 	}
 	generators.RunGenerator(&opt)
 

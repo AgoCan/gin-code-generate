@@ -1,5 +1,15 @@
 # gin-code-generate
-基于gin和gorm的mvc框架目录结构构建
+基于gin制作的mvc代码目录生成器
+- gin
+- gorm
+- zap日志库
+- viper配置工具
+
+使用方式
+
+```
+./gin-code-generate --path 目录 --project-name 项目名称 --mod
+```
 
 https://github.com/urfave/cli 命令行工具 可选项 https://github.com/spf13/cobra
 

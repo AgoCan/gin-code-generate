@@ -49,6 +49,7 @@ func getCurrPath() string {
 	return abPath
 }
 
+// InitConfig 初始化配置项
 func InitConfig(opt *Option) {
 	viper.SetConfigFile(opt.ConfigFile)
 	err := viper.ReadInConfig()
