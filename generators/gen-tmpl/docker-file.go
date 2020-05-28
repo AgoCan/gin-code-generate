@@ -20,5 +20,5 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     rm -rf /var/cache/apk/*
 # 使用--from的参数做到拷贝使用
 COPY --from=builder /app/app /app
-
-CMD ["/app"]`
+COPY --from=builder /app/config/config.yaml /etc/{{ .ProjectName }}_config.yaml
+CMD ["sh","-c","/app -c /etc/{{ .ProjectName }}_config.yaml"]`
