@@ -12,6 +12,7 @@ var dirs = []string{
 	"models",
 	"templates",
 	"utils/response",
+	"utils/generator",
 	"config",
 	"log",
 	"middleware",
