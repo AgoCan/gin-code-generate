@@ -94,7 +94,7 @@ func InitConfig(opt *Option) (err error) {
 		fmt.Println("err:", err)
 		return err
 	}
-	MysqlConnect = Conf.Db.Mysql.Username + ":" + Conf.Db.Mysql.Password + "@(" +
+	MysqlConnect = Conf.Db.Mysql.Username + ":" + Conf.Db.Mysql.Password + "@tcp(" +
 		Conf.Db.Mysql.Host + ":" + Conf.Db.Mysql.Port + ")/" + Conf.Db.Mysql.DbName +
 		"?charset=utf8mb4&parseTime=True&loc=Local"
 	LogDirector = Conf.Log.LogDirector

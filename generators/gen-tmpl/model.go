@@ -5,23 +5,28 @@ var ModelContent = `package model
 // https://gorm.io/zh_CN/
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/jmoiron/sqlx"
+	// 导入mysql驱动
+	_ "github.com/go-sql-driver/mysql"
 	"{{ .ProjectName }}/config"
 )
 // DB db handler
-var DB *gorm.DB
+var DB *sqlx.DB
 // InitMysql 初始化数据库
-func InitMysql() (err error) {
-	DB, err = gorm.Open("mysql", config.MysqlConnect)
+func InitMysql() (err error) { 
+	DB, err = sqlx.Open("mysql", config.MysqlConnect)
 	if err != nil {
 		return err
 	}
-	// 创建数据库
-	migrate()
-	// 尝试连接
-	err = DB.DB().Ping()
-	return
+
+	err = DB.Ping()
+	if err != nil {
+		return err
+	}
+
+	DB.SetMaxOpenConns(100)
+	DB.SetMaxIdleConns(16)
+	return nil
 }
 // Close 关闭数据库
 func Close()(){
