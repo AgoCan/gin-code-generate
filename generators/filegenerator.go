@@ -18,6 +18,7 @@ var files = map[string]string{
 	"README.md":             tmpl.ReadmeContent,
 	"config/option.go":      tmpl.ConfigOptionContent,
 	"utils/generator/id.go": tmpl.IDGenerateContent,
+	"gitignore":             tmpl.Ignore,
 }
 
 // FileGenerator 文件生成器
