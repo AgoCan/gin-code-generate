@@ -1,11 +1,12 @@
 package tmpl
 
 // ConfigContent 配置文件
-var ConfigContent = `// 配置文件导入yaml文件是configstruct.go
+var ConfigContent = `package config
+
+// 配置文件导入yaml文件是configstruct.go
 //
 // 配置文件可以使用 -c 的参数
 // https://github.com/go-yaml/yaml
-package config
 
 import (
 	"path"

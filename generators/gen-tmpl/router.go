@@ -2,10 +2,12 @@ package tmpl
 
 // RouterContent router
 var RouterContent = `package routers
+
 import (
 	"github.com/gin-gonic/gin"
 	"{{ .ProjectName }}/middleware"
 )
+
 // SetupRouter 初始化gin入口，路由信息
 func SetupRouter() *gin.Engine{
 	router := gin.New()

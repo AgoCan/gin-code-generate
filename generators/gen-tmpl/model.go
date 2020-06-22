@@ -5,9 +5,11 @@ var ModelContent = `package model
 // https://gorm.io/zh_CN/
 import (
 	"fmt"
-	"github.com/jmoiron/sqlx"
+	
 	// 导入mysql驱动
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
+	
 	"{{ .ProjectName }}/config"
 )
 // DB db handler
@@ -36,5 +38,4 @@ func Close()(){
 	}
 	return
 }
-func migrate(){
-}`
+`

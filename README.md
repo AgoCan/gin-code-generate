@@ -1,7 +1,7 @@
 # gin-code-generate
 基于gin制作的mvc代码目录生成器
 - gin       web框架
-- gorm      orm工具
+- sqlx      model工具
 - zap       日志工具
 - viper     配置工具
 - urfave    命令行工具
@@ -37,6 +37,8 @@
 │   └── router.go       # 路由初始化文件
 ├── templates           # 模版层
 └── utils               # 工具
+    └── generator       # 生成器使用
+        └── id          # 唯一id生成器
     └── response        # 回调使用
 
 ```
