@@ -8,17 +8,19 @@ import (
 )
 
 var files = map[string]string{
-	"main.go":               tmpl.MainContent,
-	"routers/router.go":     tmpl.RouterContent,
-	"middleware/log.go":     tmpl.MiddlewareLog,
-	"config/config.go":      tmpl.ConfigContent,
-	"config/config.yaml":    tmpl.ConfigYamlContent,
-	"models/model.go":       tmpl.ModelContent,
-	"Dockerfile":            tmpl.DockerfileContent,
-	"README.md":             tmpl.ReadmeContent,
-	"config/option.go":      tmpl.ConfigOptionContent,
-	"utils/generator/id.go": tmpl.IDGenerateContent,
-	"gitignore":             tmpl.Ignore,
+	"main.go":                        tmpl.MainContent,
+	"routers/router.go":              tmpl.RouterContent,
+	"middleware/log.go":              tmpl.MiddlewareLog,
+	"config/config.go":               tmpl.ConfigContent,
+	"config/config.yaml":             tmpl.ConfigYamlContent,
+	"models/model.go":                tmpl.ModelContent,
+	"Dockerfile":                     tmpl.DockerfileContent,
+	"README.md":                      tmpl.ReadmeContent,
+	"config/option.go":               tmpl.ConfigOptionContent,
+	"utils/generator/id.go":          tmpl.IDGenerateContent,
+	"utils/response/response.go":     tmpl.ResponseContent,
+	"utils/response/responsecode.go": tmpl.ResponseCodeContent,
+	"gitignore":                      tmpl.Ignore,
 }
 
 // FileGenerator 文件生成器
