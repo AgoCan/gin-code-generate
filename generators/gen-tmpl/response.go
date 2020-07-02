@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Data 回调时的固定地址
-type Data struct {
+// resData 回调时的固定内容
+type resData struct {
 	Code    int         ` + "`json:" + `"code"` + "`" + `
 	Message string      ` + "`json:" + `"message"` + "`" + `
 	Data    interface{} ` + "`json:" + `"data"` + "`" + `
@@ -19,22 +19,22 @@ type Data struct {
 // Error 回调错误信息
 func Error(ctx *gin.Context, code int) {
 
-	Data := &Data{
+	resData := &resData{
 		Code:    code,
 		Message: getMessage(code),
 	}
 
-	ctx.JSON(http.StatusOK, Data)
+	ctx.JSON(http.StatusOK, resData)
 }
 
 // Success 回调正确信息
 func Success(ctx *gin.Context, data interface{}) {
-	Data := &Data{
+	resData := &resData{
 		Code:    ErrCodeSuccess,
 		Message: getMessage(ErrCodeSuccess),
 		Data:    data,
 	}
 
-	ctx.JSON(http.StatusOK, Data)
+	ctx.JSON(http.StatusOK, resData)
 }
 `
