@@ -43,12 +43,12 @@ func main() {
 	// 初始化配置文件
 	config.InitConfig(&config.Opt)
 	// 连接数据库并在代码结束后关闭
-	err = model.InitMysql()
+	err = models.InitMysql()
 	if err != nil {
 		// 数据库连接失败，直接报错
 		panic(err)
 	}
-	defer model.Close()
+	defer models.Close()
 
 	// 调用路由组
 	router := routers.SetupRouter()
