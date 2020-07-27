@@ -20,7 +20,7 @@ var files = map[string]string{
 	"utils/generator/id.go":          tmpl.IDGenerateContent,
 	"utils/response/response.go":     tmpl.ResponseContent,
 	"utils/response/responsecode.go": tmpl.ResponseCodeContent,
-	"gitignore":                      tmpl.Ignore,
+	".gitignore":                     tmpl.Ignore,
 }
 
 // FileGenerator 文件生成器
