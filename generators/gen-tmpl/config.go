@@ -41,6 +41,8 @@ type LogConfig struct {
 	LogDirector     string
 	LogInfoFilename string
 	LogInfoFilePath string
+	LogErrorFilename string
+	LogErrorFilePath string
 	LogMaxSize      int
 	LogMaxBackups   int
 	LogMaxAge       int
@@ -103,7 +105,8 @@ func InitConfig(opt *Option) (err error) {
 		LogDirector = path.Join(path.Dir(getCurrPath()), "log")
 	}
 	Conf.Log.LogInfoFilePath = path.Join(LogDirector, viper.GetString("log.logInfoFilename"))
-
+	Conf.Log.LogErrorFilePath = path.Join(LogDirector, viper.GetString("log.logErrorFilename"))
+	
 	return nil
 }
 

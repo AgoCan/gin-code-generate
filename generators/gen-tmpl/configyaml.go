@@ -14,6 +14,7 @@ log:
   # 默认路径是运行程序的目录
   #  logDirector: ./logging
   logInfoFilename: info.log
+  logErrorFilename: error.log
   logMaxSize: 10
   logMaxBackups: 5
   logMaxAge: 10

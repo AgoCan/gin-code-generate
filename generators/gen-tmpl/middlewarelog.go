@@ -28,13 +28,24 @@ func InitLogger() (err error) {
 		config.Conf.Log.LogMaxSize,
 		config.Conf.Log.LogMaxBackups,
 		config.Conf.Log.LogMaxAge)
+	// error单独使用一个日志文件，平时好排查
+	writeSyncer2 := getLogWriter(config.Conf.Log.LogErrorFilePath,
+		config.Conf.Log.LogMaxSize,
+		config.Conf.Log.LogMaxBackups,
+		config.Conf.Log.LogMaxAge)
 	encoder := getEncoder()
 	var l = new(zapcore.Level)
+	var l2 = new(zapcore.Level)
 	err = l.UnmarshalText([]byte(config.LogLevel))
+	err = l2.UnmarshalText([]byte("ERROR"))
 	if err != nil {
+
 		return
 	}
-	core := zapcore.NewCore(encoder, writeSyncer, l)
+	core := zapcore.NewTee(
+		zapcore.NewCore(encoder, writeSyncer, l),
+		zapcore.NewCore(encoder, writeSyncer2, l2),
+	)
 
 	Logger = zap.New(core, zap.AddCaller())
 	return
