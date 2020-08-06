@@ -16,7 +16,7 @@ var dirs = []string{
 	"utils/generator",
 	"config",
 	"log",
-	"middleware",
+	"middleware/log",
 }
 
 // DirGenerator 目录生成器

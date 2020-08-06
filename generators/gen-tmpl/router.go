@@ -4,18 +4,19 @@ package tmpl
 var RouterContent = `package routers
 
 import (
+	"{{ .ProjectName }}/middleware/log"
+
 	"github.com/gin-gonic/gin"
-	"{{ .ProjectName }}/middleware"
 )
 
 // SetupRouter 初始化gin入口，路由信息
 func SetupRouter() *gin.Engine{
 	router := gin.New()
-	if err := middleware.InitLogger(); err != nil {
+	if err := log.InitLogger(); err != nil {
 		panic(err)
 	}
-	router.Use(middleware.GinLogger(middleware.Logger),
-		middleware.GinRecovery(middleware.Logger, true))
+	router.Use(log.GinLogger(log.Logger),
+		log.GinRecovery(log.Logger, true))
 
 	router.GET("/hello", func(c *gin.Context) {
 		c.String(200, "hello world")

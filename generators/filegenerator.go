@@ -10,7 +10,7 @@ import (
 var files = map[string]string{
 	"main.go":                        tmpl.MainContent,
 	"routers/router.go":              tmpl.RouterContent,
-	"middleware/log.go":              tmpl.MiddlewareLog,
+	"middleware/log/log.go":          tmpl.MiddlewareLog,
 	"config/config.go":               tmpl.ConfigContent,
 	"config/config.yaml":             tmpl.ConfigYamlContent,
 	"models/model.go":                tmpl.ModelContent,

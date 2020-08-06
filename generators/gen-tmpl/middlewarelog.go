@@ -1,7 +1,7 @@
 package tmpl
 
 // MiddlewareLog 日志中间件
-var MiddlewareLog = `package middleware
+var MiddlewareLog = `package log
 
 import (
 	"{{ .ProjectName }}/config"
