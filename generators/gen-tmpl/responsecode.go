@@ -5,20 +5,24 @@ var ResponseCodeContent = `package response
 
 // 错误码
 const (
-	ErrCodeSuccess           = 0
-	ErrCodeParameter         = 1001
+	ErrCodeSuccess   = 0
+	ErrCodeParameter = 1001
+	ErrSQL           = 2001
 )
 
 func getMessage(code int) (message string) {
-	switch code {
-	case ErrCodeSuccess:
-		message = "success"
-	case ErrCodeParameter:
-		message = "参数错误"
-	default:
-		message = "记录已经存在"
+	var codeMsgMap map[int]string
+	codeMsgMap = make(map[int]string, 1024)
+
+	codeMsgMap[ErrCodeSuccess] = "success"
+	codeMsgMap[ErrCodeParameter] = "参数错误"
+	codeMsgMap[ErrSQL] = "sql错误"
+
+	message, ok := codeMsgMap[code]
+	if !ok {
 		message = "未知错误"
 	}
-	return
+	return message
 }
+
 `
