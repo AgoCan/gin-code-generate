@@ -67,12 +67,11 @@ var (
 	LogDirector string
 	// LogInfoFile info日志文件
 	LogInfoFilename string
-	LogMaxSize int
-	LogMaxBackups int
-	LogMaxAge int
-	LogLevel string
+	LogMaxSize      int
+	LogMaxBackups   int
+	LogMaxAge       int
+	LogLevel        string
 )
-
 // 获取文件绝对路径
 func getCurrPath() string {
 	var abPath string
