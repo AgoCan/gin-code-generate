@@ -12,7 +12,7 @@ var dirs = []string{
 	"routers",
 	"models",
 	"templates",
-	"utils/response",
+	"serializer",
 	"utils/generator",
 	"config",
 	"log",
