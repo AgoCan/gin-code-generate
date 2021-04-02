@@ -7,8 +7,8 @@ import (
 )
 
 var dirs = []string{
-	"controllers",
-	"dal/db",
+	"api",
+	"service",
 	"routers",
 	"models",
 	"templates",
